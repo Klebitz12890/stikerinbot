@@ -31,7 +31,7 @@ global.APIKeys = { // APIKey nya disini
 
 // Sticker WM
 global.packname = 'ByuBotz'
-global.author = 'ImByu'
+global.author = 'ImByu With Fikri'
 
 global.wm = '© Official Bot By ID Clans'
 global.wait = '_*tunggu sedang diproses...*_'
