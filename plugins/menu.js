@@ -6,7 +6,7 @@ let fetch = require('node-fetch')
 let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
-┌─〔 %me 〕
+┌─〔 ID Clans Bot 〕
 ├ Hai, %name!
 │
 ├ Tersisa *%limit Limit*
@@ -20,8 +20,8 @@ const defaultMenu = {
 │
 ├ Uptime: *%uptime (%muptime)*
 ├ Database: %rtotalreg dari %totalreg
-├ Github:
-├ %github
+├ Website ID Clans:
+├ https://linktr.ee/idclans
 └────
 %readmore`.trimStart(),
   header: '┌─〔 %category 〕',
@@ -411,18 +411,18 @@ function clockString(ms) {
 }
 function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
-  res = "Selamat dinihari"
+  res = "Official Bot By ID Clans"
   if (time >= 4) {
-    res = "Selamat pagi"
+    res = "Official Bot By ID Clans"
   }
   if (time > 10) {
-    res = "Selamat siang"
+    res = "Official Bot By ID Clans"
   }
   if (time >= 15) {
-    res = "Selamat sore"
+    res = "Official Bot By ID Clans"
   }
   if (time >= 18) {
-    res = "Selamat malam"
+    res = "Official Bot By ID Clans"
   }
   return res
 }
