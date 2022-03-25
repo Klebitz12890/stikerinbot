@@ -1,35 +1,51 @@
 let PhoneNumber = require('awesome-phonenumber')
-let levelling = require('../lib/levelling')
-let handler = async (m, { conn, usedPrefix }) => {
+
+let handler = async (m, { conn, text }) => {
   let pp = './src/avatar_contact.png'
-  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+  let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : m.sender
+  if (typeof db.data.users[who] == 'undefined') {
+    db.data.users[who] = {
+      exp: 0,
+      limit: 10,
+      registered: false,
+      name: conn.getName(m.sender),
+      age: -1,
+      regTime: -1,
+      afk: -1,
+      afkReason: '',
+      autolevelup: false,
+      banned: false,
+      level: 0,
+      premium: false,
+      premiumTime: 0,
+      role: '',
+      sw: false,
+    }
+  }
   try {
     pp = await conn.getProfilePicture(who)
   } catch (e) {
 
   } finally {
     let about = (await conn.getStatus(who).catch(console.error) || {}).status || ''
-    let { name, limit, exp, lastclaim, registered, regTime, age, level, role } = global.db.data.users[who]
-    let { min, xp, max } = levelling.xpRange(level, global.multiplier)
+    let { name, limit, exp, registered, regTime, age, banned, premium, premiumTime, role } = global.db.data.users[who]
     let username = conn.getName(who)
-    let math = max - xp
-    let prem = global.prems.includes(who.split`@`[0])
     let str = `
-Name: ${username} ${registered ? '(' + name + ') ': ''}(@${who.replace(/@.+/, '')})${about ? '\nAbout: ' + about : ''}
-Number: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
-Link: https://wa.me/${who.split`@`[0]}${registered ? '\nAge: ' + age : ''}
-XP: TOTAL ${exp} (${exp - min} / ${xp}) [${math <= 0 ? `Ready to *${usedPrefix}levelup*` : `${math} XP left to levelup`}]
-Level: ${level}
-Role: *${role}*
+Nama: ${username} ${registered ? '(' + name + ') ' : ''}(@${who.replace(/@.+/, '')})${about != 401 ? '\nInfo: ' + about : ''}
+Nomor: ${PhoneNumber('+' + who.replace('@s.whatsapp.net', '')).getNumber('international')}
+Link: https://wa.me/${who.split`@`[0]}${registered ? '\nUmur: ' + age : ''}
+XP: ${exp}
 Limit: ${limit}
-Registered: ${registered ? 'Yes (' + new Date(regTime) + ')': 'No'}
-Premium: ${prem ? 'Yes' : 'No'}${lastclaim > 0 ? '\nLast Claim: ' + new Date(lastclaim) : ''}
+Role: ${role}
+Daftar: ${registered ? '✅' : '❌'}
+Premium: ${premium ? `✅\nPremium Expired: ${conn.msToDate(premiumTime - new Date() * 1)}` : '❌'}
+Banned: ${banned ? '✅' : '❌'}
 `.trim()
-    let mentionedJid = [who]
-    conn.sendFile(m.chat, pp, 'pp.jpg', str, m, false, { contextInfo: { mentionedJid }})
+    await conn.sendFile(m.chat, pp, 'pp.jpg', str, m)
   }
 }
 handler.help = ['profile [@user]']
 handler.tags = ['tools']
-handler.command = /^profile$/i
+handler.command = /^profile?$/i
+
 module.exports = handler
