@@ -1,7 +1,7 @@
 let fs = require('fs')
 let chalk = require('chalk')
 
-global.owner = ['6283128734012', '6287755080455'] // Letakan nomor kamu disini
+global.owner = ['6283805870343'] // Letakan nomor kamu disini
 
 global.APIs = { // API Prefix
   // nama: 'https://website'
@@ -25,19 +25,19 @@ global.APIKeys = { // APIKey nya disini
   'https://hardianto.xyz': 'hardianto',
   'https://api.neoxr.eu.org': 'yntkts',
   'https://api.chipa.xyz': 'pais',
-  'https://api.xteam.xyz': 'apikeymu',
+  'https://api.xteam.xyz': 'KurrXd',
   'https://api.zeks.me': 'apivinz',
 }
 
 // Sticker WM
-global.packname = 'arif️fb'
-global.author = 'amel'
+global.packname = 'ByuBotz'
+global.author = 'ImByu'
 
-global.wm = '© ariffb & melcanz'
+global.wm = '© Official Bot By ID Clans'
 global.wait = '_*tunggu sedang diproses...*_'
 global.eror = '_*Server Error*_'
-global.benar = '✅'
-global.salah = '❌'
+global.benar = 'Benar✅'
+global.salah = 'Salah❌'
 global.dikit = 'dikit lagi'
 global.fla = 'https://www6.flamingtext.com/net-fu/proxy_form.cgi?&imageoutput=true&script=sketch-name&doScale=true&scaleWidth=800&scaleHeight=500&fontsize=100&fillTextType=1&fillTextPattern=Warning!&fillColor1Color=%23f2aa4c&fillColor2Color=%23f2aa4c&fillColor3Color=%23f2aa4c&fillColor4Color=%23f2aa4c&fillColor5Color=%23f2aa4c&fillColor6Color=%23f2aa4c&fillColor7Color=%23f2aa4c&fillColor8Color=%23f2aa4c&fillColor9Color=%23f2aa4c&fillColor10Color=%23f2aa4c&fillOutlineColor=%23f2aa4c&fillOutline2Color=%23f2aa4c&backgroundColor=%23101820&text='
 
